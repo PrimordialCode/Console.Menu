@@ -55,5 +55,16 @@ namespace EasyConsoleApplication
             }
             return input;
         }
+
+        public static void HitEnterToContinue()
+        {
+            Console.WriteLine("Hit 'Enter' to continue.");
+            ConsoleKeyInfo key;
+            do
+            {
+                key = Console.ReadKey(true);
+            }
+            while (key.Key != ConsoleKey.Enter);
+        }
     }
 }

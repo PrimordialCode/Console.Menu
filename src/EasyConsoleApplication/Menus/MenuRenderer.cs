@@ -2,7 +2,7 @@
 
 namespace EasyConsoleApplication.Menus
 {
-    class MenuRenderer
+    internal class MenuRenderer
     {
         public void Render(Menu menu)
         {
@@ -22,7 +22,10 @@ namespace EasyConsoleApplication.Menus
                     var selectedIdx = option - 1;
                     if (selectedIdx > -1 && selectedIdx <= menu.Items.Count)
                     {
-                        // todo: execute the action
+                        var mi = menu.Items[selectedIdx];
+                        mi.Action?.Invoke();
+
+                        ConsoleHelpers.HitEnterToContinue();
                     }
                 }
             }

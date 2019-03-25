@@ -3,16 +3,17 @@ using System;
 
 namespace EasyConsoleApplication.Example
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            // todo: define the menu
+            // define the menu
             Menu mainMenu = new Menu("Application");
-            mainMenu.Items.Add(new MenuItem("Option 1"));
-            mainMenu.Items.Add(new MenuItem("Option 2"));
+            mainMenu.Items.Add(new MenuItem("Option 1", () => Console.WriteLine("Action 1")));
+            mainMenu.Items.Add(new MenuItem("Option 2", () => Console.WriteLine("Action 2")));
+            mainMenu.Items.Add(new MenuItem("Quit", () => Environment.Exit(0)));
 
-            // todo: render the menu
+            // render the menu
             Application.Render(mainMenu);
 
             Console.WriteLine("Hello World!");
