@@ -8,6 +8,8 @@ namespace EasyConsoleApplication.Menus
 
         public List<MenuItem> Items { get; set; } = new List<MenuItem>();
 
+        internal Menu() { }
+
         public Menu(string title)
         {
             Title = title;
