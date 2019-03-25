@@ -1,5 +1,5 @@
 $configurationdefault = "Release"
-$artifacts = "./artifacts"
+$artifacts = "../../artifacts"
 
 $configuration = Read-Host 'Configuration to build [default: Release] ?'
 if ($configuration -eq '') {
