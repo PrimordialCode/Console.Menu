@@ -8,7 +8,7 @@ namespace EasyConsoleApplication.Pages
     {
         // the top of the stack is the current page
         private readonly Stack<Type> _history = new Stack<Type>();
-        private readonly MenuRenderer _menuRenderer = new MenuRenderer();
+        private readonly Rendering _menuRenderer = new Rendering();
 
         public void GoTo<T>() where T : Page
         {
@@ -29,9 +29,9 @@ namespace EasyConsoleApplication.Pages
 
         private void RenderPage(Type page)
         {
-            // todo: render a breadcrumb ?
             Page p = (Page)Activator.CreateInstance(page);
-            _menuRenderer.Render(p.Menu);
+            // render a breadcrumb ?
+            _menuRenderer.Render(p.Title, p.Body, p.Menu.Items);
         }
     }
 }

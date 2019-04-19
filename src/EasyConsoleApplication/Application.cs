@@ -7,8 +7,8 @@ namespace EasyConsoleApplication
     {
         public static void Render(Menu menu)
         {
-            var menuRenderer = new MenuRenderer();
-            menuRenderer.Render(menu);
+            var menuRenderer = new Rendering();
+            menuRenderer.Render(menu.Title, "", menu.Items);
         }
 
         private static readonly Router Router = new Router();

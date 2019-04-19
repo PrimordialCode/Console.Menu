@@ -13,6 +13,8 @@ namespace EasyConsoleApplication.Pages
             protected set { Menu.Title = value; }
         }
 
+        public string Body { get; set; }
+
         public List<MenuItem> MenuItems
         {
             get { return Menu.Items; }
