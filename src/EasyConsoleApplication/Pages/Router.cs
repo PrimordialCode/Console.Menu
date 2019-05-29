@@ -7,14 +7,14 @@ namespace EasyConsoleApplication.Pages
     public class Router
     {
         // the top of the stack is the current page
-        private readonly Stack<Type> _history = new Stack<Type>();
+        private readonly Stack<Tuple<Type, object[]>> _history = new Stack<Tuple<Type, object[]>>();
         private readonly Rendering _menuRenderer = new Rendering();
 
-        public void GoTo<T>() where T : Page
+        public void GoTo<T>(params object[] args) where T : Page
         {
             var page = typeof(T);
-            _history.Push(page);
-            RenderPage(page);
+            _history.Push(new Tuple<Type, object[]>(page, args));
+            RenderPage(page, args);
         }
 
         public void GoBack()
@@ -23,7 +23,7 @@ namespace EasyConsoleApplication.Pages
             {
                 _history.Pop();
                 var prevPage = _history.Peek();
-                RenderPage(prevPage);
+                RenderPage(prevPage.Item1, prevPage.Item2);
             }
         }
 
@@ -32,9 +32,9 @@ namespace EasyConsoleApplication.Pages
             _menuRenderer.Exit();
         }
 
-        private void RenderPage(Type page)
+        private void RenderPage(Type page, params object[] args)
         {
-            Page p = (Page)Activator.CreateInstance(page);
+            Page p = (Page)Activator.CreateInstance(page, args);
             // render a breadcrumb ?
             _menuRenderer.Render(p.Title, p.Body, p.Menu);
         }

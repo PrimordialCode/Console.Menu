@@ -32,6 +32,7 @@ namespace EasyConsoleApplication.Example
             Body = "----";
             MenuItems.Add(new MenuItem("Page 1", () => Application.GoTo<Page1>()));
             MenuItems.Add(new MenuItem("Page 2", () => Application.GoTo<Page2>()));
+            MenuItems.Add(new MenuItem("Page 3", () => Application.GoTo<Page3>("With Dependency")));
             MenuItems.Add(new MenuItem("Quit", () => Environment.Exit(0)));
         }
     }
@@ -60,6 +61,23 @@ namespace EasyConsoleApplication.Example
             MenuItems.Add(new MenuItem("opt1", "Option 1", () => Console.WriteLine("Action 1")));
             MenuItems.Add(new MenuItem("Option 2", () => Console.WriteLine("Action 2")));
             MenuItems.Add(new MenuItem("Option 3", () => Console.WriteLine("Action 3")));
+            MenuItems.Add(new MenuItem("Back", () => Application.GoBack()));
+            MenuItems.Add(new MenuItem("Quit", () => Environment.Exit(0)));
+        }
+    }
+
+    public class Page3 : Page
+    {
+        private readonly string _dependency;
+
+        public Page3(string dependency)
+        {
+            _dependency = dependency;
+            Title = "Page3";
+            Body = "-----";
+            MenuItems.Add(new MenuItem("opt1", "Option 1", () => Console.WriteLine($"{_dependency} Action 1")));
+            MenuItems.Add(new MenuItem("Option 2", () => Console.WriteLine($"{_dependency} Action 2")));
+            MenuItems.Add(new MenuItem("Option 3", () => Console.WriteLine($"{_dependency} Action 3")));
             MenuItems.Add(new MenuItem("Back", () => Application.GoBack()));
             MenuItems.Add(new MenuItem("Quit", () => Environment.Exit(0)));
         }

@@ -15,9 +15,9 @@ namespace EasyConsoleApplication
 
         private static readonly Router Router = new Router();
 
-        public static void GoTo<TPage>() where TPage : Page
+        public static void GoTo<TPage>(params object[] args) where TPage : Page
         {
-            Router.GoTo<TPage>();
+            Router.GoTo<TPage>(args);
         }
 
         public static void GoBack()
