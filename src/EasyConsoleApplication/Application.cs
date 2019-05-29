@@ -5,10 +5,12 @@ namespace EasyConsoleApplication
 {
     public static class Application
     {
+        private static Rendering MenuRendering;
+
         public static void Render(Menu menu)
         {
-            var menuRenderer = new Rendering();
-            menuRenderer.Render(menu.Title, "", menu.Items);
+            MenuRendering = new Rendering();
+            MenuRendering.Render(menu.Title, "", menu);
         }
 
         private static readonly Router Router = new Router();
@@ -21,6 +23,19 @@ namespace EasyConsoleApplication
         public static void GoBack()
         {
             Router.GoBack();
+        }
+
+        /// <summary>
+        /// Call exit whenever you want to terminate the loop that
+        /// keep asking for new commands from this menu
+        /// </summary>
+        public static void Exit()
+        {
+            if (MenuRendering != null)
+            {
+                MenuRendering.Exit();
+            }
+            Router.Exit();
         }
     }
 }

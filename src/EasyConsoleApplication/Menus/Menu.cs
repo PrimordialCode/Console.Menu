@@ -13,6 +13,6 @@ namespace EasyConsoleApplication.Menus
         public Menu(string title)
         {
             Title = title;
-        }
+        }        
     }
 }

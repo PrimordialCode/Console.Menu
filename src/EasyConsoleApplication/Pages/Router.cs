@@ -27,11 +27,16 @@ namespace EasyConsoleApplication.Pages
             }
         }
 
+        public void Exit()
+        {
+            _menuRenderer.Exit();
+        }
+
         private void RenderPage(Type page)
         {
             Page p = (Page)Activator.CreateInstance(page);
             // render a breadcrumb ?
-            _menuRenderer.Render(p.Title, p.Body, p.Menu.Items);
+            _menuRenderer.Render(p.Title, p.Body, p.Menu);
         }
     }
 }

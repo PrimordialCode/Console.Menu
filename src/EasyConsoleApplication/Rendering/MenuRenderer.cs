@@ -1,16 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace EasyConsoleApplication.Menus
 {
     internal class Rendering
     {
+        /// <summary>
+        /// variable that will be chacked to know if it's time
+        /// to terminate the loop that keep asking for new commands
+        /// from this menu
+        /// </summary>
+        internal bool terminate;
+
+        /// <summary>
+        /// Call exit whenever you want to terminate the loop that
+        /// keep asking for new commands from this menu
+        /// </summary>
+        public void Exit()
+        {
+            terminate = true;
+        }
+
         public void Render(
             string title,
             string body,
-            List<MenuItem> menuItems)
+            Menu menu)
         {
+            var menuItems = menu.Items;
             while (true)
             {
                 Console.Clear();
@@ -58,15 +73,33 @@ namespace EasyConsoleApplication.Menus
                             }
                         }
                     }
+
+                    if (terminate)
+                    {
+                        break;
+                    }
                 }
             }
         }
 
-        private static void ExecuteAction(MenuItem mi)
+        /// <summary>
+        /// Execute the command and decide if its time to terminare the 
+        /// command loop
+        /// </summary>
+        /// <param name="menu"></param>
+        /// <param name="mi"></param>
+        /// <returns>
+        /// true = terminate the loop
+        /// false = keep asking for another command
+        /// </returns>
+        private void ExecuteAction(MenuItem mi)
         {
             mi.Action?.Invoke();
 
-            ConsoleHelpers.HitEnterToContinue();
+            if (!terminate)
+            {
+                ConsoleHelpers.HitEnterToContinue();
+            }
         }
     }
 }
