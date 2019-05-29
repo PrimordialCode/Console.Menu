@@ -11,14 +11,12 @@ namespace EasyConsoleApplication.Example
             // define the menu
             Menu mainMenu = new Menu("Application");
             mainMenu.Items.Add(new MenuItem("Option 1", () => Console.WriteLine("Action 1")));
-            mainMenu.Items.Add(new MenuItem("Option 2", () => Console.WriteLine("Action 2")));
+            mainMenu.Items.Add(new MenuItem("opt2", "Option 2", () => Console.WriteLine("Action 2")));
             mainMenu.Items.Add(new MenuItem("Go to Home", () => Application.GoTo<HomePage>()));
             mainMenu.Items.Add(new MenuItem("Quit", () => Environment.Exit(0)));
 
             // render the menu
             Application.Render(mainMenu);
-
-            Console.WriteLine("Hello World!");
         }
     }
 
@@ -42,6 +40,7 @@ namespace EasyConsoleApplication.Example
             Body = "-----";
             MenuItems.Add(new MenuItem("Option 1", () => Console.WriteLine("Action 1")));
             MenuItems.Add(new MenuItem("Option 2", () => Console.WriteLine("Action 2")));
+            MenuItems.Add(new MenuItem("opt3", "Option 3", () => Console.WriteLine("Action 3")));
             MenuItems.Add(new MenuItem("Back", () => Application.GoBack()));
             MenuItems.Add(new MenuItem("Quit", () => Environment.Exit(0)));
         }
@@ -53,8 +52,9 @@ namespace EasyConsoleApplication.Example
         {
             Title = "Page2";
             Body = "-----";
-            MenuItems.Add(new MenuItem("Option 1", () => Console.WriteLine("Action 1")));
+            MenuItems.Add(new MenuItem("opt1", "Option 1", () => Console.WriteLine("Action 1")));
             MenuItems.Add(new MenuItem("Option 2", () => Console.WriteLine("Action 2")));
+            MenuItems.Add(new MenuItem("Option 3", () => Console.WriteLine("Action 3")));
             MenuItems.Add(new MenuItem("Back", () => Application.GoBack()));
             MenuItems.Add(new MenuItem("Quit", () => Environment.Exit(0)));
         }
