@@ -2,7 +2,7 @@
 
 namespace EasyConsoleApplication.Menus
 {
-    public class MenuItem
+    public class MenuItem : IMenuItem
     {
         /// <summary>
         /// The command the user has to type to activate the menu item.

@@ -15,7 +15,7 @@ namespace EasyConsoleApplication.Pages
 
         public string Body { get; set; }
 
-        public List<MenuItem> MenuItems
+        public List<IMenuItem> MenuItems
         {
             get { return Menu.Items; }
         }

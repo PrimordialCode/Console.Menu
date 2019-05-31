@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace EasyConsoleApplication.Menus
 {
@@ -26,6 +27,10 @@ namespace EasyConsoleApplication.Menus
             Menu menu)
         {
             var menuItems = menu.Items;
+            var menuActions = menu.Items
+                .Where(mi => mi.GetType() == typeof(MenuItem))
+                .Cast<MenuItem>()
+                .ToList();
             while (true)
             {
                 Console.Clear();
@@ -39,20 +44,13 @@ namespace EasyConsoleApplication.Menus
                 }
                 if (menuItems != null)
                 {
-                    for (int idx = 0; idx < menuItems.Count; idx++)
-                    {
-                        var mi = menuItems[idx];
-                        var cmd = mi.Command;
-                        if (string.IsNullOrWhiteSpace(cmd))
-                        {
-                            cmd = (idx + 1).ToString();
-                        }
-                        Console.WriteLine($" {cmd} - {mi.Title}");
-                    }
+                    RenderMenuItems(menuItems);
+
+                    Console.WriteLine();
                     string value = ConsoleHelpers.Readline(Console.ForegroundColor, "Select an option: ");
 
                     // check the string commands first
-                    var selectedMi = menuItems.Find(m => m.Command == value);
+                    var selectedMi = menuActions.Find(m => m.Command == value);
                     if (selectedMi != null)
                     {
                         ExecuteAction(selectedMi);
@@ -65,7 +63,7 @@ namespace EasyConsoleApplication.Menus
                             var selectedIdx = option - 1;
                             if (selectedIdx > -1 && selectedIdx < menuItems.Count)
                             {
-                                var mi = menuItems[selectedIdx];
+                                var mi = menuActions[selectedIdx];
                                 if (string.IsNullOrWhiteSpace(mi.Command))
                                 {
                                     ExecuteAction(mi);
@@ -78,6 +76,29 @@ namespace EasyConsoleApplication.Menus
                     {
                         break;
                     }
+                }
+            }
+        }
+
+        private static void RenderMenuItems(System.Collections.Generic.List<IMenuItem> menuItems)
+        {
+            int commandIndex = 0;
+            for (int idx = 0; idx < menuItems.Count; idx++)
+            {
+                switch (menuItems[idx])
+                {
+                    case MenuItem mi:
+                        commandIndex++;
+                        var cmd = mi.Command;
+                        if (string.IsNullOrWhiteSpace(cmd))
+                        {
+                            cmd = commandIndex.ToString();
+                        }
+                        Console.WriteLine($" {cmd} - {mi.Title}");
+                        break;
+                    case Separator sep:
+                        Console.WriteLine($" {sep.Title}");
+                        break;
                 }
             }
         }

@@ -31,10 +31,7 @@ namespace EasyConsoleApplication
         /// </summary>
         public static void Exit()
         {
-            if (MenuRendering != null)
-            {
-                MenuRendering.Exit();
-            }
+            MenuRendering?.Exit();
             Router.Exit();
         }
     }

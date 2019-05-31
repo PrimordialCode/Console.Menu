@@ -2,17 +2,17 @@
 
 namespace EasyConsoleApplication.Menus
 {
-    public class Menu
+    public class Menu : IMenuItem
     {
         public string Title { get; set; }
 
-        public List<MenuItem> Items { get; set; } = new List<MenuItem>();
+        public List<IMenuItem> Items { get; set; } = new List<IMenuItem>();
 
         internal Menu() { }
 
         public Menu(string title)
         {
             Title = title;
-        }        
+        }
     }
 }
