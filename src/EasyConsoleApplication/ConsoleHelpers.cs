@@ -49,7 +49,7 @@ namespace EasyConsoleApplication
         {
             Write(color, message, false);
             string input = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(message))
+            if (string.IsNullOrWhiteSpace(input))
             {
                 return defaultValue;
             }
