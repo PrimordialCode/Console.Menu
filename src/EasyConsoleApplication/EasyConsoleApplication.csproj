@@ -22,4 +22,13 @@
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.ServiceProcess.ServiceController">
+      <Version>4.5.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <Reference Include="System.ServiceProcess"></Reference>
+    <Reference Include="System.Configuration.Install"></Reference>
+  </ItemGroup>
 </Project>
