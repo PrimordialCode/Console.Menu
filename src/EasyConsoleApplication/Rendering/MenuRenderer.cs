@@ -23,7 +23,9 @@ namespace EasyConsoleApplication.Menus
 
         public void Render(
             string title,
+            ConsoleColor titleColor,
             string body,
+            ConsoleColor bodyColor,
             Menu menu)
         {
             var menuItems = menu.Items;
@@ -36,11 +38,11 @@ namespace EasyConsoleApplication.Menus
                 Console.Clear();
                 if (!string.IsNullOrWhiteSpace(title))
                 {
-                    Console.WriteLine(title);
+                    ConsoleHelpers.Write(titleColor, title, true);
                 }
                 if (!string.IsNullOrWhiteSpace(body))
                 {
-                    Console.WriteLine(body);
+                    ConsoleHelpers.Write(bodyColor, body, true);
                 }
                 if (menuItems != null)
                 {
@@ -49,24 +51,27 @@ namespace EasyConsoleApplication.Menus
                     Console.WriteLine();
                     string value = ConsoleHelpers.Readline(Console.ForegroundColor, "Select an option: ");
 
-                    // check the string commands first
-                    var selectedMi = menuActions.Find(m => m.Command == value);
-                    if (selectedMi != null)
+                    if (!string.IsNullOrWhiteSpace(value))
                     {
-                        ExecuteAction(selectedMi);
-                    }
-                    else
-                    {
-                        // use the positional value (only if the Command property does not have a value).
-                        if (int.TryParse(value, out int option))
+                        // check the string commands first
+                        var selectedMi = menuActions.Find(m => m.Command == value);
+                        if (selectedMi != null)
                         {
-                            var selectedIdx = option - 1;
-                            if (selectedIdx > -1 && selectedIdx < menuItems.Count)
+                            ExecuteAction(selectedMi);
+                        }
+                        else
+                        {
+                            // use the positional value (only if the Command property does not have a value).
+                            if (int.TryParse(value, out int option))
                             {
-                                var mi = menuActions[selectedIdx];
-                                if (string.IsNullOrWhiteSpace(mi.Command))
+                                var selectedIdx = option - 1;
+                                if (selectedIdx > -1 && selectedIdx < menuItems.Count)
                                 {
-                                    ExecuteAction(mi);
+                                    var mi = menuActions[selectedIdx];
+                                    if (string.IsNullOrWhiteSpace(mi.Command))
+                                    {
+                                        ExecuteAction(mi);
+                                    }
                                 }
                             }
                         }
@@ -94,10 +99,10 @@ namespace EasyConsoleApplication.Menus
                         {
                             cmd = commandIndex.ToString();
                         }
-                        Console.WriteLine($" {cmd} - {mi.Title}");
+                        ConsoleHelpers.Write(mi.Color, $" {cmd} - {mi.Title}", true);
                         break;
                     case Separator sep:
-                        Console.WriteLine($" {sep.Title}");
+                        ConsoleHelpers.Write(sep.Color, $" {sep.Title}", true);
                         break;
                 }
             }

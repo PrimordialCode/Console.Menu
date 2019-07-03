@@ -12,7 +12,10 @@ namespace EasyConsoleApplication.Example
             Menu mainMenu = new Menu("Application");
             mainMenu.Items.Add(new MenuItem("Option 1", () => Console.WriteLine("Action 1")));
             mainMenu.Items.Add(new MenuItem("opt2", "Option 2", () => Console.WriteLine("Action 2")));
-            mainMenu.Items.Add(new MenuItem("Go to Home", () => Application.GoTo<HomePage>()));
+            mainMenu.Items.Add(new MenuItem("Go to Home", () => Application.GoTo<HomePage>())
+            {
+                Color = ConsoleColor.Green
+            });
             mainMenu.Items.Add(Separator.Instance);
             mainMenu.Items.Add(new MenuItem("Quit", () => Application.Exit()));
 
@@ -30,12 +33,17 @@ namespace EasyConsoleApplication.Example
         public HomePage()
         {
             Title = "Home";
+            TitleColor = ConsoleColor.Green;
             Body = "----";
+            BodyColor = ConsoleColor.DarkGreen;
             MenuItems.Add(new MenuItem("Page 1", () => Application.GoTo<Page1>()));
             MenuItems.Add(new MenuItem("Page 2", () => Application.GoTo<Page2>()));
-            MenuItems.Add(new MenuItem("Page 3", () => Application.GoTo<Page3>("With Dependency")));
+            MenuItems.Add(new MenuItem("Page 3", () => Application.GoTo<Page3>("With Dependency"))
+            {
+                Color = ConsoleColor.Yellow
+            });
             MenuItems.Add(Separator.Instance);
-            MenuItems.Add(new MenuItem("Quit", () => Environment.Exit(0)));
+            MenuItems.Add(new MenuItem("Quit", () => Application.Exit()));
         }
     }
 
@@ -52,7 +60,7 @@ namespace EasyConsoleApplication.Example
             MenuItems.Add(new MenuItem("exit", "Menu Exit", () => Application.Exit()));
             MenuItems.Add(Separator.Instance);
             MenuItems.Add(new MenuItem("Back", () => Application.GoBack()));
-            MenuItems.Add(new MenuItem("Quit", () => Environment.Exit(0)));
+            MenuItems.Add(new MenuItem("Quit", () => Application.Exit()));
         }
     }
 
@@ -67,7 +75,7 @@ namespace EasyConsoleApplication.Example
             MenuItems.Add(new MenuItem("Option 3", () => Console.WriteLine("Action 3")));
             MenuItems.Add(Separator.Instance);
             MenuItems.Add(new MenuItem("Back", () => Application.GoBack()));
-            MenuItems.Add(new MenuItem("Quit", () => Environment.Exit(0)));
+            MenuItems.Add(new MenuItem("Quit", () => Application.Exit()));
         }
     }
 
@@ -85,7 +93,7 @@ namespace EasyConsoleApplication.Example
             MenuItems.Add(new MenuItem("Option 3", () => Console.WriteLine($"{_dependency} Action 3")));
             MenuItems.Add(Separator.Instance);
             MenuItems.Add(new MenuItem("Back", () => Application.GoBack()));
-            MenuItems.Add(new MenuItem("Quit", () => Environment.Exit(0)));
+            MenuItems.Add(new MenuItem("Quit", () => Application.Exit()));
         }
     }
 }

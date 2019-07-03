@@ -1,5 +1,6 @@
 ﻿using EasyConsoleApplication.Menus;
 using EasyConsoleApplication.Pages;
+using System;
 
 namespace EasyConsoleApplication
 {
@@ -10,7 +11,7 @@ namespace EasyConsoleApplication
         public static void Render(Menu menu)
         {
             MenuRendering = new Rendering();
-            MenuRendering.Render(menu.Title, "", menu);
+            MenuRendering.Render(menu.Title, menu.Color, null, ConsoleColor.White, menu);
         }
 
         private static readonly Router Router = new Router();

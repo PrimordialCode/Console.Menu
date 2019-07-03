@@ -36,7 +36,7 @@ namespace EasyConsoleApplication.Pages
         {
             Page p = (Page)Activator.CreateInstance(page, args);
             // render a breadcrumb ?
-            _menuRenderer.Render(p.Title, p.Body, p.Menu);
+            _menuRenderer.Render(p.Title, p.TitleColor, p.Body, p.BodyColor, p.Menu);
         }
     }
 }

@@ -11,6 +11,7 @@ namespace EasyConsoleApplication.Menus
         public string Command { get; private set; }
 
         public string Title { get; private set; }
+        public ConsoleColor Color { get; set; } = ConsoleColor.White;
 
         public Action Action { get; private set; }
 
