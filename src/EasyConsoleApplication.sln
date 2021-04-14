@@ -5,7 +5,16 @@ VisualStudioVersion = 16.0.28714.193
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyConsoleApplication", "EasyConsoleApplication\EasyConsoleApplication.csproj", "{724D2606-6253-4A3B-BCC4-8F03CBC8CAB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyConsoleApplication.Example", "EasyConsoleApplication.Example\EasyConsoleApplication.Example.csproj", "{9EE6920A-8AB1-4105-8003-2A364AFA9D0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyConsoleApplication.Example", "EasyConsoleApplication.Example\EasyConsoleApplication.Example.csproj", "{9EE6920A-8AB1-4105-8003-2A364AFA9D0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{652EE18A-E1BE-4333-8E08-4223B3969DFB}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\build.ps1 = ..\build.ps1
+		..\Changelog.md = ..\Changelog.md
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
