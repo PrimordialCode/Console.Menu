@@ -7,6 +7,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/PrimordialCode/EasyConsoleApplication</PackageProjectUrl>
     <RepositoryUrl>https://github.com/PrimordialCode/EasyConsoleApplication</RepositoryUrl>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\LICENSE">

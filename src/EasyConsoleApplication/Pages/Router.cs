@@ -7,8 +7,8 @@ namespace EasyConsoleApplication.Pages
     public class Router
     {
         // the top of the stack is the current page
-        private readonly Stack<Tuple<Type, object[]>> _history = new Stack<Tuple<Type, object[]>>();
-        private readonly Rendering _menuRenderer = new Rendering();
+        private readonly Stack<Tuple<Type, object[]>> _history = new();
+        private readonly Rendering _menuRenderer = new();
 
         public void GoTo<T>(params object[] args) where T : Page
         {
@@ -34,7 +34,7 @@ namespace EasyConsoleApplication.Pages
 
         private void RenderPage(Type page, params object[] args)
         {
-            Page p = (Page)Activator.CreateInstance(page, args);
+            Page p = (Page)Activator.CreateInstance(page, args)!;
             // render a breadcrumb ?
             _menuRenderer.Render(p.Title, p.TitleColor, p.Body, p.BodyColor, p.Menu);
         }

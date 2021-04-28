@@ -6,7 +6,7 @@ namespace EasyConsoleApplication.Menus
     {
         public static Separator Instance { get; } = new Separator();
 
-        public string Title { get; private set; }
+        public string? Title { get; }
 
         public ConsoleColor Color { get; set; } = ConsoleSettings.DefaultColor;
 

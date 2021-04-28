@@ -4,7 +4,7 @@ namespace EasyConsoleApplication.Menus
 {
     public interface IMenuItem
     {
-        string Title { get; }
+        string? Title { get; }
 
         ConsoleColor Color { get; }
     }

@@ -22,9 +22,9 @@ namespace EasyConsoleApplication.Menus
         }
 
         public void Render(
-            string title,
+            string? title,
             ConsoleColor titleColor,
-            string body,
+            string? body,
             ConsoleColor bodyColor,
             Menu menu)
         {
@@ -38,18 +38,18 @@ namespace EasyConsoleApplication.Menus
                 Console.Clear();
                 if (!string.IsNullOrWhiteSpace(title))
                 {
-                    ConsoleHelpers.Write(titleColor, title, true);
+                    ConsoleHelpers.Write(titleColor, title!, true);
                 }
                 if (!string.IsNullOrWhiteSpace(body))
                 {
-                    ConsoleHelpers.Write(bodyColor, body, true);
+                    ConsoleHelpers.Write(bodyColor, body!, true);
                 }
                 if (menuItems != null)
                 {
                     RenderMenuItems(menuItems);
 
                     Console.WriteLine();
-                    string value = ConsoleHelpers.Readline(Console.ForegroundColor, "Select an option: ");
+                    var value = ConsoleHelpers.Readline(Console.ForegroundColor, "Select an option: ");
 
                     if (!string.IsNullOrWhiteSpace(value))
                     {
@@ -109,7 +109,7 @@ namespace EasyConsoleApplication.Menus
         }
 
         /// <summary>
-        /// Execute the command and decide if its time to terminare the 
+        /// Execute the command and decide if its time to terminare the
         /// command loop
         /// </summary>
         /// <param name="menu"></param>

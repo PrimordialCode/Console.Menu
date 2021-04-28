@@ -5,7 +5,7 @@ namespace EasyConsoleApplication.Menus
 {
     public class Menu : IMenuItem
     {
-        public string Title { get; set; }
+        public string? Title { get; set; }
         public ConsoleColor Color { get; set; } = ConsoleSettings.DefaultColor;
 
         public List<IMenuItem> Items { get; set; } = new List<IMenuItem>();

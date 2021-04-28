@@ -8,7 +8,7 @@ namespace EasyConsoleApplication.Pages
     {
         public Menu Menu { get; } = new Menu();
 
-        public string Title
+        public string? Title
         {
             get { return Menu.Title; }
             protected set { Menu.Title = value; }
@@ -20,7 +20,7 @@ namespace EasyConsoleApplication.Pages
             protected set { Menu.Color = value; }
         }
 
-        public string Body { get; set; }
+        public string? Body { get; set; }
 
         public ConsoleColor BodyColor { get; set; } = ConsoleSettings.DefaultColor;
 

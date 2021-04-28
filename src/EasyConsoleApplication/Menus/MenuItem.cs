@@ -9,20 +9,20 @@ namespace EasyConsoleApplication.Menus
         /// The command the user has to type to activate the menu item.
         /// If Empty the position inside the menu will be used.
         /// </summary>
-        public string Command { get; private set; }
+        public string? Command { get; }
 
-        public string Title { get; private set; }
+        public string Title { get; }
         public ConsoleColor Color { get; set; } = ConsoleSettings.DefaultColor;
 
-        public Action Action { get; private set; }
-        public Func<Task> ActionAsync { get; private set; }
+        public Action? Action { get; }
+        public Func<Task>? ActionAsync { get; }
 
         public MenuItem(string title, Action action)
             : this(null, title, action)
         {
         }
 
-        public MenuItem(string command, string title, Action action)
+        public MenuItem(string? command, string title, Action action)
         {
             Title = title;
             Action = action;
@@ -34,7 +34,7 @@ namespace EasyConsoleApplication.Menus
         {
         }
 
-        public MenuItem(string command, string title, Func<Task> actionAsync)
+        public MenuItem(string? command, string title, Func<Task> actionAsync)
         {
             Title = title;
             ActionAsync = actionAsync;

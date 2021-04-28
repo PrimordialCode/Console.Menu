@@ -6,7 +6,7 @@ namespace EasyConsoleApplication
 {
     public static class Application
     {
-        private static Rendering MenuRendering;
+        private static Rendering? MenuRendering;
 
         public static void Render(Menu menu)
         {

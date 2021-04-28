@@ -46,10 +46,10 @@ namespace EasyConsoleApplication
             return key;
         }
 
-        public static string Readline(ConsoleColor color, string message, string defaultValue = null)
+        public static string? Readline(ConsoleColor color, string message, string? defaultValue = null)
         {
             Write(color, message, false);
-            string input = Console.ReadLine();
+            var input = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(input))
             {
                 return defaultValue;
