@@ -8,7 +8,7 @@ namespace EasyConsoleApplication.Menus
 
         public string Title { get; private set; }
 
-        public ConsoleColor Color { get; set; } = ConsoleColor.White;
+        public ConsoleColor Color { get; set; } = ConsoleSettings.DefaultColor;
 
         public Separator()
         {

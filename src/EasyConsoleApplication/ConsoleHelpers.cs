@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasyConsoleApplication.Menus;
+using System;
 
 namespace EasyConsoleApplication
 {
@@ -58,7 +59,7 @@ namespace EasyConsoleApplication
 
         public static void HitEnterToContinue()
         {
-            Console.WriteLine("Hit 'Enter' to continue.");
+            Write(ConsoleSettings.HitEnterToContinueColor, "Hit 'Enter' to continue.", newLine: true);
             ConsoleKeyInfo key;
             do
             {

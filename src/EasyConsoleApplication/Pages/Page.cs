@@ -22,7 +22,7 @@ namespace EasyConsoleApplication.Pages
 
         public string Body { get; set; }
 
-        public ConsoleColor BodyColor { get; set; } = ConsoleColor.White;
+        public ConsoleColor BodyColor { get; set; } = ConsoleSettings.DefaultColor;
 
         public List<IMenuItem> MenuItems
         {

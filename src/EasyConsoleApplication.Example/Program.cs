@@ -1,6 +1,7 @@
 ﻿using EasyConsoleApplication.Menus;
 using EasyConsoleApplication.Pages;
 using System;
+using System.Threading.Tasks;
 
 namespace EasyConsoleApplication.Example
 {
@@ -8,6 +9,9 @@ namespace EasyConsoleApplication.Example
     {
         private static void Main(string[] _)
         {
+            // set some global settings
+            ConsoleSettings.DefaultColor = ConsoleColor.White;
+
             // define the menu
             Menu mainMenu = new Menu("Application");
             mainMenu.Items.Add(new MenuItem("Option 1", () => Console.WriteLine("Action 1")));
@@ -16,6 +20,13 @@ namespace EasyConsoleApplication.Example
             {
                 Color = ConsoleColor.Green
             });
+            mainMenu.Items.Add(new MenuItem("Option 3 (async)", async () =>
+            {
+                Console.WriteLine("Action 2");
+                Console.WriteLine("... delay ...");
+                await Task.Delay(1000).ConfigureAwait(false);
+                Console.WriteLine("Action 2 Completed");
+            }));
             mainMenu.Items.Add(Separator.Instance);
             mainMenu.Items.Add(new MenuItem("Quit", () => Application.Exit()));
 

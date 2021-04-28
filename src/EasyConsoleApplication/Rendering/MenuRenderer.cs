@@ -29,7 +29,7 @@ namespace EasyConsoleApplication.Menus
             Menu menu)
         {
             var menuItems = menu.Items;
-            var menuActions = menu.Items
+            var menuActions = menuItems
                 .Where(mi => mi.GetType() == typeof(MenuItem))
                 .Cast<MenuItem>()
                 .ToList();
@@ -65,7 +65,7 @@ namespace EasyConsoleApplication.Menus
                             if (int.TryParse(value, out int option))
                             {
                                 var selectedIdx = option - 1;
-                                if (selectedIdx > -1 && selectedIdx < menuItems.Count)
+                                if (selectedIdx > -1 && selectedIdx < menuActions.Count)
                                 {
                                     var mi = menuActions[selectedIdx];
                                     if (string.IsNullOrWhiteSpace(mi.Command))
@@ -121,6 +121,7 @@ namespace EasyConsoleApplication.Menus
         private void ExecuteAction(MenuItem mi)
         {
             mi.Action?.Invoke();
+            mi.ActionAsync?.Invoke().Wait();
 
             if (!terminate)
             {
