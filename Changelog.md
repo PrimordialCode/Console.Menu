@@ -1,3 +1,11 @@
+## 0.5.0
+
+- Added support for net6.0
+- Added support for net7.0
+- Added support for net461
+- Dropped net45
+- Updated build script
+
 ## 0.4.0
 
 - ConsoleSettings: allows to set some global settings.

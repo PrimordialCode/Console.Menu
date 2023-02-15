@@ -1,5 +1,7 @@
+$src_directory = Resolve-Path .
+$sln = "$src_directory\src\EasyConsoleApplication.sln"
 $configurationdefault = "Release"
-$artifacts = "../../artifacts"
+$artifacts = "$src_directory\artifacts"
 
 $configuration = Read-Host 'Configuration to build [default: Release] ?'
 if ($configuration -eq '') {
@@ -7,21 +9,29 @@ if ($configuration -eq '') {
 }
 # $runtests = Read-Host 'Run Tests (y / n) [default:n] ?'
 
-# Consider using NuGet to download the package (GitVersion.CommandLine)
-choco install gitversion.portable --pre --y
-choco upgrade gitversion.portable --pre --y
+# Install gitversion tool
+dotnet tool restore
+$output = dotnet tool run dotnet-gitversion | out-string # /nofetch
+
+# GitVersion
+Write-Host $output
+$version = $output | ConvertFrom-Json
+$assemblyVersion = $version.AssemblySemver
+$assemblyFileVersion = $version.AssemblySemver
+#$assemblyInformationalVersion = ($version.SemVer + "." + $version.Sha)
+$assemblyInformationalVersion = ($version.InformationalVersion)
+$nugetVersion = $version.NuGetVersion
+Write-Host $assemblyVersion
+Write-Host $assemblyFileVersion
+Write-Host $assemblyInformationalVersion
+Write-Host $nugetVersion
 
 # Display minimal restore information
-dotnet restore ./src/EasyConsoleApplication.sln --verbosity m
-
-# GitVersion 
-$str = gitversion /updateAssemblyInfo | out-string
-$json = convertFrom-json $str
-$nugetversion = $json.NuGetVersion
+#& dotnet restore $sln --verbosity m
 
 # Build
-Write-Host "Building: "$nugetversion
-dotnet build ./src/EasyConsoleApplication.sln -c $configuration --no-restore
+Write-Host "Building: $nugetversion $configuration $sln"
+& dotnet build $sln --configuration $configuration /p:AssemblyVersion=$assemblyVersion /p:FileVersion=$assemblyFileVersion /p:InformationalVersion=$assemblyInformationalVersion
 
 # Testing
 # if ($runtests -eq "y") {
@@ -31,5 +41,5 @@ dotnet build ./src/EasyConsoleApplication.sln -c $configuration --no-restore
 # }
 
 # NuGet packages
-Write-Host "NuGet Packages creation"
-dotnet pack ./src/EasyConsoleApplication/EasyConsoleApplication.csproj -c $configuration --no-build -o $artifacts /p:PackageVersion=$nugetversion
+Write-Host "NuGet Packages creation: $nugetversion"
+& dotnet pack "$src_directory/src/EasyConsoleApplication/EasyConsoleApplication.csproj" --configuration $configuration --no-build -o $artifacts /p:PackageVersion=$nugetversion

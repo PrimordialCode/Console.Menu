@@ -13,7 +13,7 @@ namespace EasyConsoleApplication.Example
             ConsoleSettings.DefaultColor = ConsoleColor.White;
 
             // define the menu
-            Menu mainMenu = new Menu("Application");
+            var mainMenu = new Menu("Application");
             mainMenu.Items.Add(new MenuItem("Option 1", () => Console.WriteLine("Action 1")));
             mainMenu.Items.Add(new MenuItem("opt2", "Option 2", () => Console.WriteLine("Action 2")));
             mainMenu.Items.Add(new MenuItem("Go to Home", () => Application.GoTo<HomePage>())
