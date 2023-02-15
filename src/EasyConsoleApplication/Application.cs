@@ -14,7 +14,7 @@ namespace EasyConsoleApplication
             MenuRendering.Render(menu.Title, menu.Color, null, ConsoleSettings.DefaultColor, menu);
         }
 
-        private static readonly Router Router = new Router();
+        private static readonly Router Router = new();
 
         public static void GoTo<TPage>(params object[] args) where TPage : Page
         {
