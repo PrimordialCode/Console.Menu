@@ -4,6 +4,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>PrimordialCode, Alessandro Giorgetti</Authors>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/PrimordialCode/EasyConsoleApplication</PackageProjectUrl>
     <RepositoryUrl>https://github.com/PrimordialCode/EasyConsoleApplication</RepositoryUrl>
     <LangVersion>latest</LangVersion>
@@ -11,6 +12,10 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
