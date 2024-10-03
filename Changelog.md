@@ -1,9 +1,17 @@
+## 0.5.2
+
+- Removed support for net5.0
+- Removed support for net6.0
+- Added support for net8.0
+- Improved nuget package: added debug symbols and icon.
+
 ## 0.5.1
 
 - added README to nuget package.
 
 ## 0.5.0
 
+- Added support for netstandard2.0
 - Added support for net6.0
 - Added support for net7.0
 - Added support for net461
