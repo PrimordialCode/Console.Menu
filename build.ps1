@@ -42,4 +42,4 @@ Write-Host "Building: $nugetversion $configuration $sln"
 
 # NuGet packages
 Write-Host "NuGet Packages creation: $nugetversion"
-& dotnet pack "$src_directory/src/EasyConsoleApplication/EasyConsoleApplication.csproj" --configuration $configuration --no-build -o $artifacts /p:PackageVersion=$nugetversion
+& dotnet pack "$src_directory/src/EasyConsoleApplication/EasyConsoleApplication.csproj" --configuration $configuration --no-build -o $artifacts /p:PackageVersion=$nugetversion --include-symbols
