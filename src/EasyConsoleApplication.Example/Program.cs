@@ -31,7 +31,7 @@ namespace EasyConsoleApplication.Example {
                 else {
                     ConsoleHelpers.WriteRed("User said no");
                 }
-                var text = ConsoleHelpers.Readline(ConsoleColor.Gray, "Type some text: ");
+                var text = ConsoleHelpers.ReadLine(ConsoleColor.Gray, "Type some text: ");
                 ConsoleHelpers.Write(ConsoleColor.Gray, "You typed: ");
                 Console.WriteLine(text);
             }));

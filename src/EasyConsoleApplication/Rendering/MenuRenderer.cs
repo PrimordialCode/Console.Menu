@@ -49,7 +49,7 @@ namespace EasyConsoleApplication.Menus
                     RenderMenuItems(menuItems);
 
                     Console.WriteLine();
-                    var value = ConsoleHelpers.Readline(Console.ForegroundColor, "Select an option: ");
+                    var value = ConsoleHelpers.ReadLine(Console.ForegroundColor, "Select an option: ");
 
                     if (!string.IsNullOrWhiteSpace(value))
                     {
