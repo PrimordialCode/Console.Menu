@@ -1,14 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461;net5.0;net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net461;net7.0;net8.0</TargetFrameworks>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>PrimordialCode, Alessandro Giorgetti</Authors>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>Mammoth.png</PackageIcon>
     <PackageProjectUrl>https://github.com/PrimordialCode/EasyConsoleApplication</PackageProjectUrl>
     <RepositoryUrl>https://github.com/PrimordialCode/EasyConsoleApplication</RepositoryUrl>
-    <LangVersion>latest</LangVersion>
+    <Copyright>Copyright Giorgetti Alessandro 2024</Copyright>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
+    <DebugSymbols>true</DebugSymbols>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\LICENSE">
@@ -19,5 +25,6 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <None Include="..\..\Mammoth.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>
