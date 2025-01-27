@@ -1,44 +1,70 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace EasyConsoleApplication.Menus
+﻿namespace EasyConsoleApplication.Menus
 {
-    public class MenuItem : IMenuItem
-    {
-        /// <summary>
-        /// The command the user has to type to activate the menu item.
-        /// If Empty the position inside the menu will be used.
-        /// </summary>
-        public string? Command { get; }
+	/// <summary>
+	/// Represents a menu item.
+	/// </summary>
+	public class MenuItem : IMenuItem
+	{
+		/// <summary>
+		/// The command the user has to type to activate the menu item.
+		/// If Empty the position inside the menu will be used.
+		/// </summary>
+		public string? Command { get; }
 
-        public string Title { get; }
-        public ConsoleColor Color { get; set; } = ConsoleSettings.DefaultColor;
+		/// <summary>
+		/// The title of the menu item.
+		/// </summary>
+		public string Title { get; }
 
-        public Action? Action { get; }
-        public Func<Task>? ActionAsync { get; }
+		/// <summary>
+		/// Menu item color.
+		/// </summary>
+		public ConsoleColor Color { get; set; } = ConsoleSettings.DefaultColor;
 
-        public MenuItem(string title, Action action)
-            : this(null, title, action)
-        {
-        }
+		/// <summary>
+		/// The action to execute when the menu item is selected.
+		/// </summary>
+		public Action? Action { get; }
 
-        public MenuItem(string? command, string title, Action action)
-        {
-            Title = title;
-            Action = action;
-            Command = command;
-        }
+		/// <summary>
+		/// The async action to execute when the menu item is selected.
+		/// </summary>
+		public Func<Task>? ActionAsync { get; }
 
-        public MenuItem(string title, Func<Task> actionAsync)
-            : this(null, title, actionAsync)
-        {
-        }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MenuItem"/> class.
+		/// </summary>
+		public MenuItem(string title, Action action)
+			: this(null, title, action)
+		{
+		}
 
-        public MenuItem(string? command, string title, Func<Task> actionAsync)
-        {
-            Title = title;
-            ActionAsync = actionAsync;
-            Command = command;
-        }
-    }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MenuItem"/> class.
+		/// </summary>
+		public MenuItem(string? command, string title, Action action)
+		{
+			Title = title;
+			Action = action;
+			Command = command;
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MenuItem"/> class.
+		/// </summary>
+		public MenuItem(string title, Func<Task> actionAsync)
+			: this(null, title, actionAsync)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MenuItem"/> class.
+		/// </summary>
+		public MenuItem(string? command, string title, Func<Task> actionAsync)
+		{
+			Title = title;
+			ActionAsync = actionAsync;
+			Command = command;
+		}
+	}
 }

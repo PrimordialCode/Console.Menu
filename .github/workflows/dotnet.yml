@@ -1,0 +1,52 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches: [ "main", "develop", "feature/*", "release/*", "hotfix/*", "support/*" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+#    strategy:
+#      matrix:
+#        runner: [ ubuntu-latest, self-hosted ]
+#    runs-on: ${{ matrix.runner }}
+
+    # disabled ubuntu-latest runner because .NET Framework 4.x might have problem running
+    # runs-on: ubuntu-latest
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Install GitVersion
+      run: dotnet tool restore
+    - name: Restore dependencies
+      run: dotnet restore ./src/EasyConsoleApplication.sln
+    - name: Determine version
+      run: dotnet tool run dotnet-gitversion /updateprojectfiles
+    - name: Build
+      run: dotnet build ./src/EasyConsoleApplication.sln --configuration Release --no-restore -p:ContinuousIntegrationBuild=True
+    #- name: Test
+    #  run: dotnet test ./src/EasyConsoleApplication.sln --configuration Release --no-build --verbosity normal
+    - name: Pack
+      # only pack if the branch is main, release, or hotfix
+      if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') || startsWith(github.ref, 'refs/heads/hotfix/')
+      run: dotnet pack ./src/EasyConsoleApplication.sln --configuration Release --no-build --output ./artifacts --include-symbols
+    - name: Publish
+      # only publish if the branch is main, release or hotfix
+      if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') || startsWith(github.ref, 'refs/heads/hotfix/')
+      # with windows-latest, the path is D:\a\EasyConsoleApplication\EasyConsoleApplication\artifacts\*.nupkg
+      # with ubuntu-latest, the path is ./artifacts/*.nupkg
+      run: dotnet nuget push 'D:\a\EasyConsoleApplication\EasyConsoleApplication\artifacts\*.nupkg' --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
