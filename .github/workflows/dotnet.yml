@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "main", "develop", "feature/*", "release/*", "hotfix/*", "support/*" ]
+    branches: [ "main", "master", "develop", "feature/*", "release/*", "hotfix/*", "support/*" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
   workflow_dispatch:
 
 jobs:
