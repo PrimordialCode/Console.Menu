@@ -42,11 +42,11 @@ jobs:
     #  run: dotnet test ./src/EasyConsoleApplication.sln --configuration Release --no-build --verbosity normal
     - name: Pack
       # only pack if the branch is main, release, or hotfix
-      if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') || startsWith(github.ref, 'refs/heads/hotfix/')
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/release/') || startsWith(github.ref, 'refs/heads/hotfix/')
       run: dotnet pack ./src/EasyConsoleApplication.sln --configuration Release --no-build --output ./artifacts --include-symbols
     - name: Publish
       # only publish if the branch is main, release or hotfix
-      if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') || startsWith(github.ref, 'refs/heads/hotfix/')
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/release/') || startsWith(github.ref, 'refs/heads/hotfix/')
       # with windows-latest, the path is D:\a\EasyConsoleApplication\EasyConsoleApplication\artifacts\*.nupkg
       # with ubuntu-latest, the path is ./artifacts/*.nupkg
       run: dotnet nuget push 'D:\a\EasyConsoleApplication\EasyConsoleApplication\artifacts\*.nupkg' --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
