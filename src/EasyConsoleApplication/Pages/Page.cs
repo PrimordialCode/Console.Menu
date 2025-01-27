@@ -1,32 +1,51 @@
 ﻿using EasyConsoleApplication.Menus;
-using System;
-using System.Collections.Generic;
 
 namespace EasyConsoleApplication.Pages
 {
-    public abstract class Page
-    {
-        public Menu Menu { get; } = new Menu();
+	/// <summary>
+	/// Base class for a page.
+	/// </summary>
+	public abstract class Page
+	{
+		/// <summary>
+		/// Menu instance.
+		/// </summary>
+		public Menu Menu { get; } = new Menu();
 
-        public string? Title
-        {
-            get { return Menu.Title; }
-            protected set { Menu.Title = value; }
-        }
+		/// <summary>
+		/// The title of the page.
+		/// </summary>
+		public string? Title
+		{
+			get { return Menu.Title; }
+			protected set { Menu.Title = value; }
+		}
 
-        public ConsoleColor TitleColor
-        {
-            get { return Menu.Color; }
-            protected set { Menu.Color = value; }
-        }
+		/// <summary>
+		/// Title color.
+		/// </summary>
+		public ConsoleColor TitleColor
+		{
+			get { return Menu.Color; }
+			protected set { Menu.Color = value; }
+		}
 
-        public string? Body { get; set; }
+		/// <summary>
+		/// The body of the page.
+		/// </summary>
+		public string? Body { get; set; }
 
-        public ConsoleColor BodyColor { get; set; } = ConsoleSettings.DefaultColor;
+		/// <summary>
+		/// Body color.
+		/// </summary>
+		public ConsoleColor BodyColor { get; set; } = ConsoleSettings.DefaultColor;
 
-        public List<IMenuItem> MenuItems
-        {
-            get { return Menu.Items; }
-        }
-    }
+		/// <summary>
+		/// List of menu items.
+		/// </summary>
+		public List<IMenuItem> MenuItems
+		{
+			get { return Menu.Items; }
+		}
+	}
 }

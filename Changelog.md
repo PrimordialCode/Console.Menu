@@ -3,6 +3,7 @@
 - Added support for net9.0
 - Removed support for net7.0
 - Improved nuget package to be deterministic and support source-links.
+- Improved comments and documentation.
 
 ## 0.6.0
 
