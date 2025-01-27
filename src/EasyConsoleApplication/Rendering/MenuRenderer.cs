@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace EasyConsoleApplication.Rendering
 {
-    internal class MenuRenderer
+    internal sealed class MenuRenderer
     {
         /// <summary>
         /// variable that will be check to know if it's time
