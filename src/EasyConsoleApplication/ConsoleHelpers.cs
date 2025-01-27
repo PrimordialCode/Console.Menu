@@ -1,5 +1,4 @@
-﻿using EasyConsoleApplication.Menus;
-using System;
+﻿using System;
 
 namespace EasyConsoleApplication
 {

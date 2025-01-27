@@ -1,26 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace EasyConsoleApplication.Menus
+﻿namespace EasyConsoleApplication.Menus
 {
-    public class Menu : IMenuItem
-    {
-        public string? Title { get; set; }
-        public ConsoleColor Color { get; set; } = ConsoleSettings.DefaultColor;
+	/// <summary>
+	/// Represents a menu.
+	/// </summary>
+	public class Menu : IMenuItem
+	{
+		/// <summary>
+		/// The title of the menu.
+		/// </summary>
+		public string? Title { get; set; }
 
-        public List<IMenuItem> Items { get; set; } = new List<IMenuItem>();
+		/// <summary>
+		/// Menu color.
+		/// </summary>
+		public ConsoleColor Color { get; set; } = ConsoleSettings.DefaultColor;
 
-        internal Menu() { }
+		/// <summary>
+		/// The items in the menu.
+		/// </summary>
+		public List<IMenuItem> Items { get; set; } = [];
 
-        public Menu(string title)
-        {
-            Title = title;
-        }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Menu"/> class.
+		/// </summary>
+		internal Menu() { }
 
-        public Menu(string title, ConsoleColor color)
-        {
-            Title = title;
-            Color = color;
-        }
-    }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Menu"/> class.
+		/// </summary>
+		public Menu(string title)
+		{
+			Title = title;
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Menu"/> class.
+		/// </summary>
+		public Menu(string title, ConsoleColor color)
+		{
+			Title = title;
+			Color = color;
+		}
+	}
 }

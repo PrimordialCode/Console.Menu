@@ -1,16 +1,16 @@
-﻿using System;
-using System.Linq;
+﻿using EasyConsoleApplication.Menus;
+using System.Globalization;
 
-namespace EasyConsoleApplication.Menus
+namespace EasyConsoleApplication.Rendering
 {
-    internal class Rendering
+    internal sealed class MenuRenderer
     {
         /// <summary>
-        /// variable that will be chacked to know if it's time
+        /// variable that will be check to know if it's time
         /// to terminate the loop that keep asking for new commands
         /// from this menu
         /// </summary>
-        internal bool terminate;
+        internal bool _shouldTerminate;
 
         /// <summary>
         /// Call exit whenever you want to terminate the loop that
@@ -18,7 +18,7 @@ namespace EasyConsoleApplication.Menus
         /// </summary>
         public void Exit()
         {
-            terminate = true;
+            _shouldTerminate = true;
         }
 
         public void Render(
@@ -77,7 +77,7 @@ namespace EasyConsoleApplication.Menus
                         }
                     }
 
-                    if (terminate)
+                    if (_shouldTerminate)
                     {
                         break;
                     }
@@ -85,7 +85,7 @@ namespace EasyConsoleApplication.Menus
             }
         }
 
-        private static void RenderMenuItems(System.Collections.Generic.List<IMenuItem> menuItems)
+        private static void RenderMenuItems(List<IMenuItem> menuItems)
         {
             int commandIndex = 0;
             for (int idx = 0; idx < menuItems.Count; idx++)
@@ -97,7 +97,7 @@ namespace EasyConsoleApplication.Menus
                         var cmd = mi.Command;
                         if (string.IsNullOrWhiteSpace(cmd))
                         {
-                            cmd = commandIndex.ToString();
+                            cmd = commandIndex.ToString(CultureInfo.InvariantCulture);
                         }
                         ConsoleHelpers.Write(mi.Color, $" {cmd} - {mi.Title}", true);
                         break;
@@ -109,11 +109,9 @@ namespace EasyConsoleApplication.Menus
         }
 
         /// <summary>
-        /// Execute the command and decide if its time to terminare the
+        /// Execute the command and decide if its time to terminate the
         /// command loop
         /// </summary>
-        /// <param name="menu"></param>
-        /// <param name="mi"></param>
         /// <returns>
         /// true = terminate the loop
         /// false = keep asking for another command
@@ -123,7 +121,7 @@ namespace EasyConsoleApplication.Menus
             mi.Action?.Invoke();
             mi.ActionAsync?.Invoke().Wait();
 
-            if (!terminate)
+            if (!_shouldTerminate)
             {
                 ConsoleHelpers.HitEnterToContinue();
             }

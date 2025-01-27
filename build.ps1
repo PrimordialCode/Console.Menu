@@ -31,7 +31,7 @@ Write-Host $nugetVersion
 
 # Build
 Write-Host "Building: $nugetversion $configuration $sln"
-& dotnet build $sln --configuration $configuration /p:AssemblyVersion=$assemblyVersion /p:FileVersion=$assemblyFileVersion /p:InformationalVersion=$assemblyInformationalVersion
+& dotnet build $sln --configuration $configuration /p:AssemblyVersion=$assemblyVersion /p:FileVersion=$assemblyFileVersion /p:InformationalVersion=$assemblyInformationalVersion /p:ContinuousIntegrationBuild=True
 
 # Testing
 # if ($runtests -eq "y") {

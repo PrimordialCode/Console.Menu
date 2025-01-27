@@ -1,22 +1,39 @@
-﻿using System;
-
-namespace EasyConsoleApplication.Menus
+﻿namespace EasyConsoleApplication.Menus
 {
-    public class Separator : IMenuItem
-    {
-        public static Separator Instance { get; } = new Separator();
+	/// <summary>
+	/// Represents a separator in a menu.
+	/// </summary>
+	public class Separator : IMenuItem
+	{
+		/// <summary>
+		/// Separator instance.
+		/// </summary>
+		public static Separator Instance { get; } = new Separator();
 
-        public string? Title { get; }
+		/// <summary>
+		/// The title of the separator.
+		/// </summary>
+		public string? Title { get; }
 
-        public ConsoleColor Color { get; set; } = ConsoleSettings.DefaultColor;
+		/// <summary>
+		/// Separator color.
+		/// </summary>
+		public ConsoleColor Color { get; set; } = ConsoleSettings.DefaultColor;
 
-        public Separator()
-        {
-        }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Separator"/> class.
+		/// </summary>
+		public Separator()
+		{
+		}
 
-        public Separator(string title)
-        {
-            Title = title;
-        }
-    }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Separator"/> class.
+		/// </summary>
+		/// <param name="title"></param>
+		public Separator(string title)
+		{
+			Title = title;
+		}
+	}
 }

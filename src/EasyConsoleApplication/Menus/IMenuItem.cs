@@ -1,11 +1,18 @@
-﻿using System;
-
-namespace EasyConsoleApplication.Menus
+﻿namespace EasyConsoleApplication.Menus
 {
-    public interface IMenuItem
-    {
-        string? Title { get; }
+	/// <summary>
+	/// Represents a menu item.
+	/// </summary>
+	public interface IMenuItem
+	{
+		/// <summary>
+		/// The title of the menu item.
+		/// </summary>
+		string? Title { get; }
 
-        ConsoleColor Color { get; }
-    }
+		/// <summary>
+		/// Menu item color.
+		/// </summary>
+		ConsoleColor Color { get; }
+	}
 }
